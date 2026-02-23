@@ -81,7 +81,9 @@ Scope {
 
                     cornerPlacement: RoundCorner.CornerPlacement.TopLeft
                     implicitSize: Appearance.rounding.screenRounding
+
                     color: barBackground.color
+                    opacity: Appearance.misc.barOpacity
                 }
 
                 RoundCorner {
@@ -89,7 +91,9 @@ Scope {
 
                     cornerPlacement: RoundCorner.CornerPlacement.TopRight
                     implicitSize: Appearance.rounding.screenRounding
+
                     color: barBackground.color
+                    opacity: Appearance.misc.barOpacity
                 }
 
             }
