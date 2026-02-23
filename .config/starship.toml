@@ -1,0 +1,92 @@
+format = """
+[░▒▓](color_bg)\
+$username\
+$directory\
+$git_branch\
+$git_status\
+$c\
+$cpp\
+$lua\
+$rust\
+[](color_bg)\
+$fill\
+[](color_bg)\
+$cmd_duration\
+$time\
+[▓▒░](color_bg)\
+$line_break\
+$character
+"""
+
+palette = "matugen"
+
+[palettes.matugen]
+color_bg  = "bright-black"
+color_fg  = "white"
+color_pri = "bright-blue"
+color_sec = "bright-green"
+color_ter = "bright-yellow"
+color_err = "red"
+
+[c]
+disabled = false
+symbol = " "
+format = "[](bg:color_bg fg:color_fg)[ $symbol($version( $name)) ]($style)"
+style = "bg:color_bg fg:color_ter"
+
+[cpp]
+disabled = false
+symbol = " "
+format = "[](bg:color_bg fg:color_fg)[ $symbol($version( $name)) ]($style)"
+style = "bg:color_bg fg:color_ter"
+
+[cmd_duration]
+disabled = false
+format = "[ $duration 󱎫 ]($style)[](bg:color_bg fg:color_fg)"
+style = "bg:color_bg fg:color_pri"
+
+[directory]
+disabled = false
+truncation_length = 3
+format = "[](bg:color_bg fg:color_fg)[ $path ]($style)"
+style = "bg:color_bg fg:color_pri"
+
+[fill]
+disabled = false
+symbol = " "
+
+[git_branch]
+disabled = false
+symbol = " "
+format = "[](bg:color_bg fg:color_fg)[ $symbol$branch]($style)"
+style = "bg:color_bg fg:color_sec"
+
+[git_status]
+disabled = false
+format = "[ $all_status$ahead_behind ]($style)"
+style = "bg:color_bg fg:color_sec"
+
+[lua]
+disabled = false
+symbol = "󰢱 "
+format = "[](bg:color_bg fg:color_fg)[ $symbol($version) ]($style)"
+style = "bg:color_bg fg:color_ter"
+
+[rust]
+disabled = false
+symbol = " "
+format = "[](bg:color_bg fg:color_fg)[ $symbol($version) ]($style)"
+style = "bg:color_bg fg:color_ter"
+
+[time]
+disabled = false
+format = "[ $time   ]($style)"
+style = "bg:color_bg fg:color_pri"
+time_format = "%H:%M"
+
+[username]
+disabled = false
+show_always = true
+format = "[ $user ]($style)"
+style_root = "bg:color_bg fg:bold color_err"
+style_user = "bg:color_bg fg:color_pri"

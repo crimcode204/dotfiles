@@ -34,7 +34,7 @@ output_path = '~/.config/Kvantum/matugen/matugen.svg'
 
 [templates.neovim]
 input_path = '~/.config/matugen/templates/nvim-colors.lua'
-output_path = '~/.config/nvim/lua/Alladin/generated.lua'
+output_path = '~/.config/nvim/lua/generated.lua'
 post_hook = 'pkill -SIGUSR1 nvim'
 
 [templates.quickshell]

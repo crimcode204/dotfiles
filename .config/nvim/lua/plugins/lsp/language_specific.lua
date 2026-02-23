@@ -13,6 +13,12 @@ return {
 		lazy = false,
 	},
 
+  -- Json Schemas
+  {
+    "b0o/schemastore.nvim",
+    lazy = true,
+  }
+
 	-- Rust: Dioxus
 	--[[ {
 		"mrxiaozhuox/dioxus.nvim",

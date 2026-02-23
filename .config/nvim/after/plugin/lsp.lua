@@ -23,7 +23,7 @@ vim.lsp.config("*", {
 
 vim.lsp.enable({
   "clangd",
-  "gopls",
+  "jsonls",
   "lua_ls",
   "pylsp",
   "qmlls"
