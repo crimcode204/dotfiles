@@ -1,5 +1,7 @@
-import Qt5Compat.GraphicalEffects
+pragma ComponentBehavior: Bound
+
 import QtQuick
+import QtQuick.Effects
 import Quickshell.Widgets
 import qs.config
 
@@ -28,12 +30,13 @@ Item {
         anchors.fill: parent
         source: `${Paths.icons}/${root.packDir}${root.iconName}.svg`
         implicitSize: root.size
-    }
 
-    ColorOverlay {
-        anchors.fill: parent
-        source: iconImage
-        color: root.color
+        layer.enabled: true
+        layer.effect: MultiEffect {
+          colorization: 1.0
+          colorizationColor: root.color
+          brightness: 1.0
+        }
     }
 
 }
