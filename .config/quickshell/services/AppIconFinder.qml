@@ -2,9 +2,12 @@ pragma Singleton
 
 import QtQuick
 import Quickshell
+import Quickshell.Wayland
 
 Singleton {
     id: root
+
+    readonly property string defaultIcon: "application-x-executable"
 
     // Entries are not loaded at the start, so icons need to be reloaded on changes
     // This is a binding to force the icon lookup to be re-evaluated
@@ -16,27 +19,31 @@ Singleton {
         }
     }
 
-    function getIcon(appName: string) : string {
-        if (!appName || appName.length === 0)
+    function getIcon(name: string) : string {
+        if (!name || name.length === 0)
             return "image-missing";
 
         desktopEntriesVersion;
 
-        const exactEntry = DesktopEntries.byId(appName);
+        const exactEntry = DesktopEntries.byId(name);
         if (exactEntry) {
             return exactEntry.icon;
         }
 
-        const heuristicEntry = DesktopEntries.heuristicLookup(appName);
+        const heuristicEntry = DesktopEntries.heuristicLookup(name);
         if (heuristicEntry) {
             return heuristicEntry.icon;
         }
 
-        return "application-x-executable";
+        return defaultIcon;
     }
 
-    function find(appName: string) : url {
-        return Quickshell.iconPath(root.getIcon(appName), true);
+    function find(tl: Toplevel) : url {
+        let icon = root.getIcon(tl.appId)
+        if (icon === root.defaultIcon) {
+            icon = root.getIcon(tl.title)
+        }
+        return Quickshell.iconPath(icon, true);
     }
 
 }

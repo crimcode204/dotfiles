@@ -4,13 +4,14 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
 import Quickshell.Hyprland
+import Quickshell.Wayland
 import qs.config
 import qs.modules.bar.components.workspaces
 
 Item {
     id: root
 
-    required property list<string> modelData
+    required property list<Toplevel> modelData
     required property int index
 
     required property int activeWorkspaceId

@@ -19,6 +19,8 @@ Item {
     readonly property int activeWorkspaceId: Hyprland.focusedWorkspace ? 
         Hyprland.focusedWorkspace.id : 1
 
+    // Save one toplevel for each distinct class in every workspace
+    // Needed for app icon search (steam apps can only be found by title)
     readonly property list<var> workspaceDistinctApps: {
         let appList = []
         for (let i = 1; i <= workspaceCount; i++) {
@@ -27,8 +29,21 @@ Item {
                 appList.push([])
                 continue
             }
-            let appIds = workspace.toplevels.values.map(tl => tl.wayland?.appId)
-            appList.push([...new Set(appIds)])
+
+            let distinctApps = new Set()
+            let apps = []
+            for (const tl of workspace.toplevels.values) {
+                if (tl.wayland?.appId === undefined) {
+                    continue
+                }
+                if (distinctApps.has(tl.wayland?.appId)) {
+                    continue
+                }
+                console.log(`App icon: ${tl.wayland?.icon}`)
+                distinctApps.add(tl.wayland?.appId);
+                apps.push(tl.wayland)
+            }
+            appList.push(apps)
         }
         return appList
     }

@@ -2,13 +2,14 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import Quickshell.Widgets
+import Quickshell.Wayland
 import qs.config
 import qs.services
 
 Item {
     id: root
 
-    required property string modelData
+    required property Toplevel modelData
 
     required property Component wsEffect
 
