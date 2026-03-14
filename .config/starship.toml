@@ -7,6 +7,7 @@ $git_status\
 $c\
 $cpp\
 $lua\
+$python\
 $rust\
 [](color_bg)\
 $fill\
@@ -70,6 +71,12 @@ style = "bg:color_bg fg:color_sec"
 disabled = false
 symbol = "󰢱 "
 format = "[](bg:color_bg fg:color_fg)[ $symbol($version) ]($style)"
+style = "bg:color_bg fg:color_ter"
+
+[python]
+disabled = false
+symbol = " "
+format = '[](bg:color_bg fg:color_fg)[ ${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 style = "bg:color_bg fg:color_ter"
 
 [rust]

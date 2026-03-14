@@ -24,8 +24,8 @@ unsetopt beep
 # Aliases
 alias cl="clear && fastfetch"
 alias ls="lsd -A --group-directories-first"
-alias nvim-config="cd ~/.config/nvim/lua && nvim ."
-alias zsh-config="cd ~/.config/zsh/ && nvim ."
+alias nvim-config="cd ~/.config/nvim && nvim ."
+alias zsh-config="cd ~/.config/zsh && nvim .zshrc"
 alias hyprland-config="cd ~/.config/hypr && nvim ."
 
 # Extensions
@@ -34,9 +34,12 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
+# Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/ManualBuilds/fzf-tab/fzf-tab.plugin.zsh
+# Vulkan SDK
+source ~/vulkansdk/default/setup-env.sh
 
 # Shell integrations
 eval "$(fzf --zsh)"

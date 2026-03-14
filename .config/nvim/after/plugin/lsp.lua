@@ -25,6 +25,7 @@ vim.lsp.enable({
   "clangd",
   "jsonls",
   "lua_ls",
+  "neocmake",
   "pylsp",
   "qmlls"
 })

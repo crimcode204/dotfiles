@@ -3,7 +3,28 @@ return {
 	"saghen/blink.cmp",
 	version = "1.*",
 	dependencies = {
-		"L3MON4D3/LuaSnip",
+		{
+			"L3MON4D3/LuaSnip",
+			version = "2.*",
+			config = function()
+				local ls = require("luasnip")
+				vim.keymap.set({ "i" }, "<C-K>", function()
+					ls.expand()
+				end, { silent = true })
+				vim.keymap.set({ "i", "s" }, "<C-L>", function()
+					ls.jump(1)
+				end, { silent = true })
+				vim.keymap.set({ "i", "s" }, "<C-H>", function()
+					ls.jump(-1)
+				end, { silent = true })
+
+				vim.keymap.set({ "i", "s" }, "<C-E>", function()
+					if ls.choice_active() then
+						ls.change_choice(1)
+					end
+				end, { silent = true })
+			end,
+		},
 		"erooke/blink-cmp-latex",
 	},
 	opts = function()
@@ -21,7 +42,20 @@ return {
 			appearance = { nerd_font_variant = "mono" },
 			cmdline = { enabled = false },
 			completion = {
-				list = { selection = { preselect = false, auto_insert = false } },
+				documentation = {
+					auto_show = false,
+					window = { border = "single" },
+				},
+				ghost_text = { enabled = true },
+				keyword = {
+					range = "full",
+				},
+				list = {
+					selection = {
+						preselect = false,
+						auto_insert = false,
+					},
+				},
 				menu = {
 					border = "single",
 					draw = {
@@ -32,14 +66,9 @@ return {
 						},
 					},
 				},
-				documentation = {
-					auto_show = false,
-					window = { border = "single" },
-				},
 				trigger = {
 					prefetch_on_insert = false,
 				},
-				ghost_text = { enabled = true },
 			},
 			signature = {
 				enabled = false,
