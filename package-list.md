@@ -35,6 +35,7 @@
 * `networkmanager`
 * `playerctl`
 * `rofi`
+* `upower`
 * `wl-clipboard`
 * `wlogout`
 * `xdg-user-dirs`

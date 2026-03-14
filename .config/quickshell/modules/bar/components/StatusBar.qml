@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Bluetooth
+import Quickshell.Services.UPower
 import qs.config
 import qs.modules.common
 
@@ -38,7 +39,27 @@ Item {
                 role: "id"
 
                 StatusItem {
-                    iconName: "battery-full"
+                    iconName: {
+                        // NOTE: find another icon for pc power
+                        if (!UPower.displayDevice.isLaptopBattery) {
+                            return "battery-full";
+                        }
+
+                        const perc = UPower.displayDevice.percentage
+
+                        if (perc === 1) {
+                            return "battery-full";
+                        } else if (perc >= 0.75) {
+                            return "battery-high";
+                        } else if (perc >= 0.5) {
+                            return "battery-medium";
+                        } else if (perc >= 0.25) {
+                            return "battery-low";
+                        } else {
+                            return "battery-warning";
+                        }
+                    }
+                    color: UPower.displayDevice.percentage < 0.25 ? Colorscheme.colors.m3error : ""
                     popoutName: "battery"
                 }
 
@@ -76,11 +97,12 @@ Item {
 
         required property string iconName
         required property string popoutName
+        property string color: ""
 
         roleValue: popoutName
 
         delegate: ColoredIcon {
-            color: Colorscheme.colors.m3primary
+            color: status.color !== "" ? status.color : Colorscheme.colors.m3primary
             size: root.iconSize
             iconName: status.iconName
             iconPack: "phosphor"
