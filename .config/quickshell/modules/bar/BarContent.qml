@@ -5,7 +5,7 @@ import qs.config
 import qs.modules.bar.components
 import qs.modules.bar.components.workspaces
 
-RowLayout {
+Item {
     id: root
 
     readonly property DelegateChooser mapper: DelegateChooser {
@@ -50,48 +50,55 @@ RowLayout {
 
     }
 
-    // Left side margin
-    Item {
-        Layout.leftMargin: Appearance.padding.large
-    }
-
     // Left side widgets
-    Repeater {
-        id: repeaterLeft
+    RowLayout {
+        Repeater {
+            id: repeaterLeft
 
-        model: BarWidgets.left
-        delegate: root.mapper
-    }
+            model: BarWidgets.left
+            delegate: root.mapper
 
-    // Left side spacer
-    Item {
-        Layout.fillWidth: enabled
+        }
+
+        anchors {
+            left: parent.left
+            leftMargin: Appearance.padding.large
+            verticalCenter: parent.verticalCenter
+        }
     }
 
     // Center widgets
-    Repeater {
-        id: repeaterMiddle
+    RowLayout {
+        Repeater {
+            id: repeaterMiddle
 
-        model: BarWidgets.center
-        delegate: root.mapper
-    }
+            model: BarWidgets.center
+            delegate: root.mapper
 
-    // Right side spacer
-    Item {
-        Layout.fillWidth: enabled
+        }
+
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            verticalCenter: parent.verticalCenter
+        }
+
     }
 
     // Right side widgets
-    Repeater {
-        id: repeaterRight
+    RowLayout {
+        Repeater {
+            id: repeaterRight
 
-        model: BarWidgets.right
-        delegate: root.mapper
-    }
+            model: BarWidgets.right
+            delegate: root.mapper
+        }
 
-    // Right side margin
-    Item {
-        Layout.rightMargin: Appearance.padding.large
+        anchors {
+            right: parent.right
+            rightMargin: Appearance.padding.large
+            verticalCenter: parent.verticalCenter
+        }
+
     }
 
 }
