@@ -1,3 +1,7 @@
+require("base16-colorscheme").with_config({
+	telescope = false,
+})
+
 require("base16-colorscheme").setup({
 	base00 = "{{colors.surface_container_lowest.default.hex}}",
 	base01 = "{{colors.surface_container.default.hex}}",

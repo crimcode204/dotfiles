@@ -24,9 +24,9 @@ unsetopt beep
 # Aliases
 alias cl="clear && fastfetch"
 alias ls="lsd -A --group-directories-first"
-alias nvim-config="cd ~/.config/nvim && nvim ."
+alias nvim-config="cd ~/.config/nvim && nvim"
 alias zsh-config="cd ~/.config/zsh && nvim .zshrc"
-alias hyprland-config="cd ~/.config/hypr && nvim ."
+alias hyprland-config="cd ~/.config/hypr && nvim"
 
 # Extensions
 autoload -U compinit
