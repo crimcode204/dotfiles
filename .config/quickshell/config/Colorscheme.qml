@@ -28,6 +28,10 @@ Singleton {
         onLoaded: root.loadFromFile(text())
     }
 
+    function applyTransparency(source: color, transparency: real): color {
+        return Qt.rgba(source.r, source.g, source.b, transparency)
+    }
+
     component Material3: QtObject {
         property color m3background: "#17130b"
         property color m3onBackground: "#ebe1d4"

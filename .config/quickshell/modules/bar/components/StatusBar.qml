@@ -3,7 +3,6 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Bluetooth
-import Quickshell.Services.UPower
 import qs.config
 import qs.modules.common
 
@@ -15,9 +14,18 @@ Item {
 
     readonly property ListModel model: BarWidgets.status
 
-    implicitWidth: iconSize * model.count + spacing * (model.count + 3)
-    implicitHeight: Appearance.sizes.bar.containerHeight
+    property real batteryWidth: 0
 
+    // Change to a map containing all widths if more dynamic size items are added
+    implicitWidth: {
+        const spacingWidth = spacing * (model.count + 3);
+        var itemsWidths = iconSize * model.count;
+        if (batteryWidth !== 0) {
+            itemsWidths += -iconSize + batteryWidth;
+        }
+        return spacingWidth + itemsWidths;
+    }
+    implicitHeight: Appearance.sizes.bar.containerHeight
 
     Rectangle {
         anchors.fill: parent
@@ -38,29 +46,17 @@ Item {
             DelegateChooser {
                 role: "id"
 
-                StatusItem {
-                    iconName: {
-                        // NOTE: find another icon for pc power
-                        if (!UPower.displayDevice.isLaptopBattery) {
-                            return "battery-full";
+                DelegateChoice {
+                    roleValue: "battery"
+
+                    delegate: Loader {
+                        sourceComponent: BatteryIndicator {
+                            id: batteryIndicator
+                            onImplicitWidthChanged: root.batteryWidth = batteryIndicator.implicitWidth
                         }
 
-                        const perc = UPower.displayDevice.percentage
-
-                        if (perc === 1) {
-                            return "battery-full";
-                        } else if (perc >= 0.75) {
-                            return "battery-high";
-                        } else if (perc >= 0.5) {
-                            return "battery-medium";
-                        } else if (perc >= 0.25) {
-                            return "battery-low";
-                        } else {
-                            return "battery-warning";
-                        }
                     }
-                    color: UPower.displayDevice.percentage < 0.25 ? Colorscheme.colors.m3error : ""
-                    popoutName: "battery"
+
                 }
 
                 StatusItem {
@@ -73,6 +69,7 @@ Item {
                             return "bluetooth";
                         }
                     }
+
                     popoutName: "bluetooth"
                 }
 
@@ -85,11 +82,8 @@ Item {
                     iconName: "speaker-high"
                     popoutName: "volume"
                 }
-
             }
-
         }
-
     }
 
     component StatusItem: DelegateChoice {
