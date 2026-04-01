@@ -16,8 +16,8 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Increase window ho
 map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Decrease window horizontal size" })
 
 -- Move selected lines
-map("v", "J", "<cmd>m '>+1<CR>gv=gv", { desc = "Move lines downwards" })
-map("v", "K", "<cmd>m '<-2<CR>gv=gv", { desc = "Move lines upwards" })
+map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move lines downwards", silent = true })
+map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move lines upwards", silent = true })
 
 -- Indent lines
 map("v", ">", ">gv", { desc = "Indent tab left", silent = true })

@@ -9,7 +9,13 @@ require("conform").setup({
 		lua = { "stylua" },
 		qml = { "qmlformat" },
 		rust = { "rustfmt" },
+    typst = { "typstyle", lsp_format = "preffer" },
 	},
+  formatters = {
+    typstyle = {
+
+    }
+  }
 })
 
 vim.keymap.set("n", "<C-f>", function()
