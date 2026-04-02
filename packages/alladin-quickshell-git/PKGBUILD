@@ -1,0 +1,70 @@
+_prefix='alladin'
+_pkgname=quickshell
+pkgname="$_prefix-$_pkgname-git"
+pkgver=0.2.0.r119.g1eb3d8b # no idea, tag should be 0.2.1, git describe returns 0.2.0, can't be bothered
+pkgrel=1
+pkgdesc='Flexible toolkit for making desktop shells with QtQuick'
+arch=(x86_64 aarch64)
+url='https://git.outfoxxed.me/quickshell/quickshell'
+options=(!strip)
+license=('LGPL-3.0-only')
+# groups=(alladin) NOTE: uncomment if you plan on packaging more things, hope not tho
+depends=(
+  'qt6-base'
+  'qt6-declarative'
+  'qt6-svg'
+  'libdrm'
+  'cpptrace'
+  'jemalloc'
+  'mesa'
+  'libpipewire'
+  'cpptrace'
+  'polkit'
+)
+makedepends=(
+  'qt6-shadertools'
+  'spirv-tools'
+  'cli11'
+  'wayland'
+  'wayland-protocols'
+  'vulkan-headers'
+  'cmake'
+  'ninja'
+  'git'
+)
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git"
+  quickshell-check.hook)
+sha256sums=('SKIP'
+  '8543e21aeaaa5441b73a679160e7601a957f16c433e8d6bd9257e80bd0e94083')
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  cd "$_pkgname"
+  cmake -GNinja -B build \
+    -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DDISTRIBUTOR="Github @crimcode204" \
+    -DINSTALL_QML_PREFIX=lib/qt6/qml \
+    -DX11=OFF \
+    -DSERVICE_STATUS_NOTIFIER=OFF \
+    -DI3=OFF \
+    -DNO_PCH=ON
+
+  cmake --build build
+}
+
+package() {
+  install -Dm644 "quickshell-check.hook" -t "$pkgdir/usr/share/libalpm/hooks"
+  cd "$_pkgname"
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "LICENSE" -t "$pkgdir/usr/share/licenses/$_pkgname"
+}
