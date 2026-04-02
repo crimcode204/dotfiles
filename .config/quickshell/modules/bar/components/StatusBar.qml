@@ -5,6 +5,7 @@ import QtQuick.Layouts
 import Quickshell.Bluetooth
 import qs.config
 import qs.modules.common
+import qs.services
 
 Item {
     id: root
@@ -62,15 +63,27 @@ Item {
                 StatusItem {
                     iconName: {
                         if (!Bluetooth.defaultAdapter?.enabled) {
-                            return "bluetooth-slash";
+                            return "bluetooth-slash"
                         } else if (Bluetooth.devices.values.some(d => d.connected)) {
-                            return "bluetooth-connected";
+                            return "bluetooth-connected"
                         } else {
-                            return "bluetooth";
+                            return "bluetooth"
                         }
                     }
 
                     popoutName: "bluetooth"
+                }
+
+                StatusItem {
+                    iconName: {
+                        if (!IdleInhibitor.enabled) {
+                            return "drop-simple"
+                        } else {
+                            return "drop-slash"
+                        }
+                    }
+                    popoutName: "idle-inhibitor"
+                    onTapped: IdleInhibitor.toggleInhibitor()
                 }
 
                 StatusItem {
@@ -82,8 +95,11 @@ Item {
                     iconName: "speaker-high"
                     popoutName: "volume"
                 }
+
             }
+
         }
+
     }
 
     component StatusItem: DelegateChoice {
@@ -93,13 +109,26 @@ Item {
         required property string popoutName
         property string color: ""
 
+        signal tapped()
+
         roleValue: popoutName
 
-        delegate: ColoredIcon {
-            color: status.color !== "" ? status.color : Colorscheme.colors.m3primary
-            size: root.iconSize
-            iconName: status.iconName
-            iconPack: "phosphor"
+        delegate: Item {
+            implicitWidth: root.iconSize
+            implicitHeight: root.iconSize
+
+            ColoredIcon {
+                color: status.color !== "" ? status.color : Colorscheme.colors.m3primary
+                size: root.iconSize
+                iconName: status.iconName
+                iconPack: "phosphor"
+            }
+
+            TapHandler {
+                id: tapHandler
+                onTapped: status.tapped()
+            }
+
         }
 
     }

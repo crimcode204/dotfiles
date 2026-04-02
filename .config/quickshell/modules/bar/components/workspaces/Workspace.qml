@@ -87,11 +87,11 @@ Item {
         id: wsEffect
 
         MultiEffect {
-          saturation: 0.3
-          colorization: 0.7
-          colorizationColor: root.color
-          brightness: 0.8
-          contrast: 0.8
+            saturation: 0.3
+            colorization: 0.7
+            colorizationColor: root.color
+            brightness: 0.8
+            contrast: 0.8
         }
     }
 

@@ -2,5 +2,5 @@
   "left": ["osIcon", "workspaces"],
   "center": ["media", "clock"],
   "right": ["status"],
-  "status": ["battery", "volume", "bluetooth", "internet"]
+  "status": ["battery", "idle-inhibitor", "volume", "bluetooth", "internet"]
 }
