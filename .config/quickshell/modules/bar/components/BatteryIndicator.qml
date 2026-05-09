@@ -5,6 +5,7 @@ import QtQuick.Controls
 import qs.modules.common
 import qs.config
 import qs.services
+import qs.utils
 
 Item {
     id: root
@@ -30,7 +31,7 @@ Item {
 
             anchors.fill: parent
             radius: root.implicitHeight / 2
-            color: Colorscheme.applyTransparency(progressFill.color, 0.5)
+            color: ColorMod.applyTransparency(progressFill.color, 0.5)
 
             Rectangle {
                 id: progressFill
@@ -46,7 +47,7 @@ Item {
                 height: parent.height
 
                 radius: parent.radius
-                color: Battery.isLowAndNotPluggedIn ? Colorscheme.colors.m3error : Colorscheme.colors.m3primary
+                color: Battery.isLowAndNotPluggedIn ? Colorscheme.colors.term.red : Colorscheme.colors.foreground
             }
         }
     }
@@ -57,7 +58,7 @@ Item {
         anchors.centerIn: bar
 
         text: (Battery.isPluggedIn ? "󱐋 " : "") + Battery.textPercentage
-        color: Battery.isLowAndNotPluggedIn ? Colorscheme.colors.m3onError : Colorscheme.colors.m3onPrimary
+        color: Battery.isLowAndNotPluggedIn ? Colorscheme.colors.term.brightRed : Colorscheme.colors.primary
 
         font {
             pointSize: Appearance.font.size.smallest

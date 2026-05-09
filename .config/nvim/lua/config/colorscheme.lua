@@ -1,4 +1,5 @@
-vim.pack.add({"https://github.com/RRethy/base16-nvim"})
+-- Matugen colors
+--[[ vim.pack.add({"https://github.com/RRethy/base16-nvim"})
 
 function Source_colors()
   local path = os.getenv("HOME") .. "/.config/nvim/lua/generated.lua"
@@ -20,4 +21,4 @@ vim.api.nvim_create_autocmd("Signal", {
 	callback = function()
 		Source_colors()
 	end,
-})
+}) ]]

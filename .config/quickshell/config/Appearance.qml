@@ -14,7 +14,7 @@ Singleton {
     readonly property Sizes sizes : Sizes {}
 
     component Misc: QtObject {
-        readonly property real barOpacity: 0.9
+        readonly property real barOpacity: 0
     }
 
     component FontConfig: QtObject {
@@ -53,6 +53,7 @@ Singleton {
     component Bar: QtObject {
         readonly property real height: 40
         readonly property real containerHeight: 34
+        readonly property real containerMargins: 7
         readonly property Workspace workspace : Workspace {}
         readonly property StatusBar statusBar : StatusBar {}
     }

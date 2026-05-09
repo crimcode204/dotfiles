@@ -14,7 +14,7 @@ require("blink.cmp").setup({
 		["<S-Tab>"] = { "select_prev", "fallback" },
 		["<C-s>"] = { "show_documentation", "fallback" },
 		-- Manually invoke minuet completion
-		["<A-y>"] = require("minuet").make_blink_map(),
+		-- ["<A-y>"] = require("minuet").make_blink_map(),
 	},
 	appearance = { nerd_font_variant = "mono" },
 	cmdline = { enabled = false },
@@ -52,7 +52,7 @@ require("blink.cmp").setup({
 		window = { border = "single" },
 	},
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "latex", "minuet" },
+		default = { "lsp", "path", "snippets", "buffer", "latex" }, -- "minuet" },
 		providers = {
 			latex = {
 				name = "Latex",

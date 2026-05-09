@@ -5,7 +5,7 @@ vim.pack.add({
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "base16",
+		theme = "auto",
 		globalstatus = vim.o.laststatus == 3,
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },

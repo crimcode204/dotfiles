@@ -23,6 +23,9 @@ return {
 				arguments = { vim.v.null },
 			}, { bufnr = bufnr })
 		end, { desc = "[T]inymist [U]npin", noremap = true })
+
+    -- Add a pcall to this
+    require("which-key").add({ "<leader>T", group = "Typst" })
 	end,
 
 	settings = {

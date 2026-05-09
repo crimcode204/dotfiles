@@ -7,6 +7,7 @@ import Quickshell.Hyprland
 import Quickshell.Wayland
 import qs.config
 import qs.modules.bar.components.workspaces
+import qs.utils
 
 Item {
     id: root
@@ -24,9 +25,9 @@ Item {
     readonly property int iconSize: Appearance.sizes.bar.workspace.iconSize
     readonly property int spacing: Appearance.sizes.bar.workspace.spacing
 
-    readonly property color color: root.isHovered ? Colorscheme.colors.m3primaryContainer
-        : root.isActive ? Colorscheme.colors.m3secondaryContainer
-        : Colorscheme.colors.m3surfaceContainerHighest
+    readonly property color color: root.isHovered ? Qt.darker(Colorscheme.colors.secondary, 1.3)
+    : root.isActive ? Qt.darker(Colorscheme.colors.primary, 1.3)
+        : Colorscheme.colors.container
 
     implicitWidth: root.buttonSize + (root.modelData.length ? root.modelData.length - 1 : 0) * (root.iconSize + root.spacing)
     implicitHeight: root.buttonSize
@@ -53,15 +54,14 @@ Item {
         opacity: (!root.isEmpty || root.isActive || root.isHovered) ? 1 : 0
     }
 
+    // Small dot for empty workspaces
     Rectangle {
         visible: root.isEmpty
         anchors.centerIn: parent
         width: root.buttonSize * 0.2
         height: width
         radius: width / 2
-        color: root.isHovered ? Colorscheme.colors.m3onPrimaryContainer
-            : root.isActive ? Colorscheme.colors.m3onSecondaryContainer
-            : Colorscheme.colors.m3secondaryContainer
+        color: root.color
 
         layer.enabled: true
         layer.effect: wsEffect

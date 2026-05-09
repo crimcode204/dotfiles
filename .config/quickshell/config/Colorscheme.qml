@@ -7,31 +7,76 @@ pragma Singleton
 Singleton {
     id: root
 
-    readonly property Material3 colors: Material3 {}
+    readonly property Colors colors: Colors {}
+
+    FileView {
+        path: Paths.colorscheme
+        watchChanges: true
+        onFileChanged: reload()
+        onPathChanged: reload()
+        onLoaded: root.loadFromFile(text())
+    }
 
     function loadFromFile(data: string): void {
         const scheme = JSON.parse(data);
 
         for (const [key, value] of Object.entries(scheme)) {
-            const camelKey = "m3" + key.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
-
-            if (colors.hasOwnProperty(camelKey)) {
-                colors[camelKey] = value;
+            if (key === "term") {
+                for(const [termKey, termValue] of Object.entries(value)) {
+                    if (colors.term.hasOwnProperty(termKey)) {
+                        colors.term[termKey] = termValue;
+                    } else {
+                        console.error(`Unknown terminal color ${termKey}`)
+                    }
+                }
+            }
+            else if (colors.hasOwnProperty(key)) {
+                colors[key] = value;
+            } else {
+                console.error(`Unknown color ${key}`)
             }
         }
     }
 
+    component Colors: QtObject {
+        property TerminalColors term: TerminalColors {}
+        property color background
+        property color foreground
+        property color container
+        property color containerFg
+        property color primary
+        property color brightPrimary
+        property color secondary
+        property color brightSecondary
+    }
+
+    component TerminalColors: QtObject {
+        property color black
+        property color red
+        property color green
+        property color yellow
+        property color blue
+        property color magenta
+        property color cyan
+        property color white
+        property color brightBlack
+        property color brightRed
+        property color brightGreen
+        property color brightYellow
+        property color brightBlue
+        property color brightMagenta
+        property color brightCyan
+        property color brightWhite
+    }
+
+    /* Material 3 theme with defaults based on Castlevania SotN cover
+     * Keep in case I implement material colors back (doubt)
     FileView {
         path: Paths.colorscheme
         watchChanges: true
         onFileChanged: reload()
         onLoaded: root.loadFromFile(text())
     }
-
-    function applyTransparency(source: color, transparency: real): color {
-        return Qt.rgba(source.r, source.g, source.b, transparency)
-    }
-
     component Material3: QtObject {
         property color m3background: "#17130b"
         property color m3onBackground: "#ebe1d4"
@@ -67,7 +112,7 @@ Singleton {
         property color m3secondaryFixed: "#f5e0bb"
         property color m3secondaryFixedDim: "#d8c4a0"
         property color m3onSecondaryFixed: "#241a04"
-        property color m3onSecondaryFixedVariant: "#53452a"
+        property color m3onSecondaryFixedVariant: "#53452
         property color m3tertiary: "#b1cfa9"
         property color m3onTertiary: "#1e361b"
         property color m3tertiaryContainer: "#344d30"
@@ -84,5 +129,5 @@ Singleton {
         property color m3shadow: "#000000"
         property color m3sourceColor: "#c6a54f"
     }
-
+    */
 }

@@ -9,7 +9,8 @@ Singleton {
     readonly property string home: Quickshell.env("HOME")
 
     readonly property string state: `${Quickshell.env("XDG_STATE_HOME") || `${home}/.local/state`}/quickshell`
-    readonly property string colorscheme: `${state}/colors.json`
+    readonly property string colorscheme: `${userConfig}/colorschemes/gruvbox.json`
+    // readonly property string colorscheme: `${state}/colors.json`
 
     readonly property string userConfig: Quickshell.shellDir
     readonly property string barWidgets: `${userConfig}/widgets.json`

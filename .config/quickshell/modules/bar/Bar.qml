@@ -4,7 +4,6 @@ import QtQuick
 import Quickshell
 import Quickshell.Wayland
 import qs.config
-import qs.modules.common
 
 // Bar panel space allocation + background  + decorators
 Scope {
@@ -50,7 +49,7 @@ Scope {
 
                     anchors.fill: parent
 
-                    color: Colorscheme.colors.m3surfaceContainerLow
+                    // color: Colorscheme.colors.m3surfaceContainerLow
                     opacity: Appearance.misc.barOpacity
                 }
 
@@ -64,7 +63,7 @@ Scope {
 
             }
 
-            Item {
+            /*Item {
                 id: roundDecorators
 
                 implicitHeight: Appearance.rounding.screenRounding
@@ -96,7 +95,7 @@ Scope {
                     opacity: Appearance.misc.barOpacity
                 }
 
-            }
+            }*/
 
         }
 

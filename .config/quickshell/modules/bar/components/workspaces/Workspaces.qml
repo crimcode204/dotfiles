@@ -50,7 +50,7 @@ Item {
 
     implicitWidth: {
         const defaultSize = root.workspaceCount * root.buttonSize + 
-          (root.workspaceCount -1) * root.spacing + 4 * root.spacing
+          (root.workspaceCount -1) * root.spacing
         let addedIconsSize = 0
         workspaceDistinctApps.forEach(apps => {
             addedIconsSize += (apps.length ? apps.length - 1 : 0) * (root.iconSize + root.spacing)
@@ -68,14 +68,6 @@ Item {
             }
         }
         acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
-    }
-
-    Rectangle {
-        anchors.fill: parent
-
-        radius: height / 2
-
-        color: Colorscheme.colors.m3surfaceContainerHigh
     }
 
     RowLayout {

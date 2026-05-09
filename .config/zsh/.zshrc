@@ -37,6 +37,7 @@ _comp_options+=(globdots)
 # Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/ManualBuilds/fzf-tab/fzf-tab.plugin.zsh
 # Vulkan SDK
 source ~/vulkansdk/default/setup-env.sh
@@ -100,3 +101,5 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 eval "$(starship init zsh)"
+
+export PATH=$PATH:/home/Alladin/.spicetify

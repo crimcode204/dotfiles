@@ -4,6 +4,6 @@ import qs.modules.common
 
 ColoredIcon {
     iconName: "arch-linux-logo"
-    color: Colorscheme.colors.m3tertiary
-    size: Appearance.font.size.large * 1.2
+    color: Colorscheme.colors.term.blue
+    size: Appearance.font.size.large
 }

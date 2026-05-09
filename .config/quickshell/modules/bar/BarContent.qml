@@ -8,42 +8,40 @@ import qs.modules.bar.components.workspaces
 Item {
     id: root
 
-    readonly property DelegateChooser mapper: DelegateChooser {
+    readonly property DelegateChooser
+    mapper: DelegateChooser {
         role: "id"
 
-        DelegateChoice {
+        ComponentWithContainer {
             roleValue: "clock"
 
-            delegate: Loader {
-                sourceComponent: Clock {}
+            component: Clock {
             }
+
         }
 
-        DelegateChoice {
+        ComponentWithContainer {
             roleValue: "osIcon"
 
-            delegate: Loader {
-                sourceComponent: OsIcon {}
+            makeRound: true
+
+            component: OsIcon {
             }
 
         }
 
-        DelegateChoice {
+        ComponentWithContainer {
             roleValue: "status"
 
-            delegate: Loader {
-                sourceComponent: StatusBar {}
+            component: StatusBar {
             }
+
         }
 
-        DelegateChoice {
+        ComponentWithContainer {
             roleValue: "workspaces"
 
-            delegate: Loader {
-                sourceComponent: Workspaces {
-                    Layout.fillHeight: true
-                }
-
+            component: Workspaces {
             }
 
         }
@@ -57,7 +55,6 @@ Item {
 
             model: BarWidgets.left
             delegate: root.mapper
-
         }
 
         anchors {
@@ -65,6 +62,7 @@ Item {
             leftMargin: Appearance.padding.large
             verticalCenter: parent.verticalCenter
         }
+
     }
 
     // Center widgets
@@ -74,7 +72,6 @@ Item {
 
             model: BarWidgets.center
             delegate: root.mapper
-
         }
 
         anchors {
@@ -97,6 +94,42 @@ Item {
             right: parent.right
             rightMargin: Appearance.padding.large
             verticalCenter: parent.verticalCenter
+        }
+
+    }
+
+    component ComponentWithContainer: DelegateChoice {
+        id: choice
+
+        required property Component component
+        property bool makeRound: false
+
+        delegate: Item {
+            id: widget
+
+            implicitHeight: Appearance.sizes.bar.containerHeight
+            implicitWidth: widget.implicitHeight
+
+            Rectangle {
+                id: background
+
+                anchors.fill: parent
+                radius: widget.implicitHeight / 2
+                color: Colorscheme.colors.background
+            }
+
+            Loader {
+                id: content
+
+                sourceComponent: choice.component
+                onImplicitWidthChanged: {
+                    if (!choice.makeRound) {
+                        widget.implicitWidth = content.implicitWidth + 2 * Appearance.sizes.bar.containerMargins;
+                    }
+                }
+                anchors.centerIn: parent
+            }
+
         }
 
     }

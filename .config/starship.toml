@@ -19,14 +19,14 @@ $line_break\
 $character
 """
 
-palette = "matugen"
+palette = "gruvbox"
 
-[palettes.matugen]
-color_bg  = "bright-black"
+[palettes.gruvbox]
+color_bg  = "black"
 color_fg  = "white"
-color_pri = "bright-blue"
-color_sec = "bright-green"
-color_ter = "bright-yellow"
+color_pri = "blue"
+color_sec = "green"
+color_ter = "yellow"
 color_err = "red"
 
 [c]

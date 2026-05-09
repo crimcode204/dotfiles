@@ -19,7 +19,7 @@ Item {
 
     // Change to a map containing all widths if more dynamic size items are added
     implicitWidth: {
-        const spacingWidth = spacing * (model.count + 3);
+        const spacingWidth = spacing * model.count;
         var itemsWidths = iconSize * model.count;
         if (batteryWidth !== 0) {
             itemsWidths += -iconSize + batteryWidth;
@@ -27,14 +27,6 @@ Item {
         return spacingWidth + itemsWidths;
     }
     implicitHeight: Appearance.sizes.bar.containerHeight
-
-    Rectangle {
-        anchors.fill: parent
-
-        radius: height / 2
-
-        color: Colorscheme.colors.m3surfaceContainerHigh
-    }
 
     RowLayout {
         z: 1
@@ -118,7 +110,7 @@ Item {
             implicitHeight: root.iconSize
 
             ColoredIcon {
-                color: status.color !== "" ? status.color : Colorscheme.colors.m3primary
+                color: status.color !== "" ? status.color : Colorscheme.colors.primary
                 size: root.iconSize
                 iconName: status.iconName
                 iconPack: "phosphor"

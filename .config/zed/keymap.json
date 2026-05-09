@@ -1,0 +1,115 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  // Empty pane
+  {
+    "context": "EmptyPane",
+    "bindings": {
+      "space f p": "projects::OpenRecent",
+    },
+  },
+
+  // Pane/window related
+  {
+    "context": "(vim_mode == normal && !menu) || Dock || Terminal || (ProjectPanel && not_editing)",
+    "bindings": {
+      // Move
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+
+      // Resize
+      "ctrl-left": "vim::ResizePaneLeft",
+      "ctrl-right": "vim::ResizePaneRight",
+      "ctrl-up": "vim::ResizePaneUp",
+      "ctrl-down": "vim::ResizePaneDown",
+
+      // Toggle panels
+      "ctrl-t": "terminal_panel::Toggle",
+      "space e": "project_panel::Toggle",
+      "space g": "git_panel::Toggle",
+      "space s": "outline_panel::Toggle",
+      "space a": "agent::Toggle",
+      "space m": "markdown::OpenPreviewToTheSide",
+
+      "space d": "diagnostics::DeployCurrentFile",
+      "space D": "diagnostics::Deploy",
+
+      // Telescope
+      "space f f": "file_finder::Toggle",
+      "space f p": "projects::OpenRecent",
+      "space f s": "outline::Toggle",
+      "space f S": "project_symbols::Toggle",
+    },
+  },
+
+  // Normal mode bindings
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      // LSP
+      "g a": "editor::ToggleCodeActions",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+      "g i": "editor::GoToImplementation",
+      "g I": "editor::GoToImplementationSplit",
+      "g r": "editor::Rename",
+      "g s": "editor::ShowSignatureHelp",
+      "K": "editor::Hover",
+
+      "ctrl-f": "editor::Format",
+    },
+  },
+
+  // Visual mode bindings
+  {
+    "context": "vim_mode == visual && !menu",
+    "bindings": {
+      // Move selected lines
+      "K": "editor::MoveLineUp",
+      "J": "editor::MoveLineDown",
+
+      // Indent selected lines
+      ">": "editor::Indent",
+      "<": "editor::Outdent",
+
+      "ctrl-f": "editor::FormatSelections",
+    },
+  },
+
+  // Normal/visual mode bindings
+  {
+    "context": "(vim_mode == normal || vim_mode == visual) && !menu",
+    "bindings": {
+      // Select all
+      "ctrl-A": "editor::SelectAll",
+    },
+  },
+
+  // File manager
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
+    },
+  },
+
+  // Disable 'space' for which-key
+  {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "space": null,
+    },
+  },
+]

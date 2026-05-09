@@ -9,7 +9,7 @@ Text {
     renderType: Text.QtRendering
     textFormat: Text.PlainText
 
-    color: Colorscheme.colors.m3onSurface
+    color: Colorscheme.colors.containerFg
 
     font {
         family: Appearance.font.family.sans

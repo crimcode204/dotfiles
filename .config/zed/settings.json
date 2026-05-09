@@ -1,0 +1,109 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  // Most important
+  "vim_mode": true,
+  "vim": {
+    "highlight_on_yank_duration": 0,
+  },
+  "which_key": {
+    "enabled": true,
+  },
+
+  "base_keymap": "JetBrains",
+
+  "cursor_blink": true,
+  "cursor_shape": "bar",
+  "hide_mouse": "on_typing_and_action",
+  "drag_and_drop_selection": {
+    "enabled": false,
+  },
+
+  "ui_font_size": 16,
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "buffer_font_size": 15.0,
+  "theme": {
+    "mode": "dark",
+    "light": "Gruvbox Light",
+    "dark": "Gruvbox Dark",
+  },
+
+  "close_on_file_delete": true,
+  "cli_default_open_behavior": "existing_window",
+
+  "scrollbar": {
+    "show": "never",
+  },
+  "minimap": {
+    "show": "never",
+  },
+  "tab_bar": {
+    "show": false,
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": false,
+    "selections_menu": false,
+    "agent_review": false,
+    "code_actions": false,
+  },
+  "title_bar": {
+    "show_sign_in": false,
+  },
+  "search": {
+    "button": false,
+  },
+  "use_smartcase_search": true,
+
+  "lsp": {},
+  "languages": {},
+
+  "hard_tabs": false,
+  "relative_line_numbers": "enabled",
+  "show_whitespaces": "none",
+  "soft_wrap": "none",
+  "tab_size": 2,
+  "scroll_beyond_last_line": "off",
+
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+    "tree_view": true,
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+
+  "agent": {
+    "default_model": {
+      "provider": "ollama",
+      "model": "qwen2.5-coder:3b",
+      "enable_thinking": false,
+    },
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "edit_predictions": {
+    "provider": "none",
+  },
+
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+}

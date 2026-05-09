@@ -1,0 +1,45 @@
+# Expand PATH
+export PATH=$PATH:~/.cargo/bin
+
+# Toolkits
+export GDK_BACKEND=wayland,x11,*
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_QPA_PLATFORM=wayland;xcb
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export QT_QPA_PLATFORMTHEME=qt5ct
+export SLD_VIDEO_BACKEND=wayland
+export CLUTTER_BACKEND=wayland
+
+# Fuck Nvidia
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export LIBVA_DRIVER_NAME=nvidia
+export GBM_BACKEND=nvidia-drm
+export NVD_BACKEND=direct
+export __GL_GSYNC_ALLOWED=1
+
+# Fuck Electron
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+
+# Zsh config path
+export ZDOTDIR=$HOME/.config/zsh
+
+# SSH agent
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+
+# Defaults
+export SHELL=/usr/bin/zsh
+export EDITOR=nvim
+export VISUAL=nvim
+export BROWSER=zen-browser
+export CXX=/usr/bin/clang++
+export CC=/usr/bin/clang
+
+# Man pages with neovim
+export MANPAGER="nvim +Man!"
+
+# Firefox gpu acceleration
+export MOZ_DISABLE_RDD_SANDBOX=1
+
+# Cursor theme
+export XCURSOR_THEME=phinger-cursors-dark
+export XCURSOR_SIZE=24

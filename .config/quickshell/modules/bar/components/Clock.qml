@@ -12,6 +12,6 @@ Item {
         anchors.centerIn: parent
 
         text: Time.format("ddd dd MMM hh:mm:ss")
-        color: Colorscheme.colors.m3primary
+        color: Colorscheme.colors.primary
     }
 }
