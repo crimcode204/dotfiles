@@ -1,0 +1,12 @@
+- name: Dotfiles setup
+  hosts: localhost
+  gather_facts: true
+
+  vars_files:
+    - vars/packages.yml
+
+  tasks:
+    - name: Install packages
+      ansible.builtin.import_tasks: tasks/packages.yml
+      become: true
+      when: ansible_facts["os_family"] in ["Arch Linux", "Archlinux"]

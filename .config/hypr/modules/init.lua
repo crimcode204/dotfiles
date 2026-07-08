@@ -1,0 +1,5 @@
+require("modules.autostart")
+require("modules.colors")
+require("modules.keybinds")
+require("modules.windowrules")
+--require("modules.environment")

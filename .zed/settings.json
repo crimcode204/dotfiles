@@ -1,0 +1,11 @@
+{
+  "file_types": {
+    "Ansible": [
+      "**/tasks/*.yml",
+      "**/tasks/*.yaml",
+      "**/vars/*.yml",
+      "**/vars/*.yml",
+      "**setup*.yml",
+    ],
+  },
+}

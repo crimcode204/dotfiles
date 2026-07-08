@@ -1,0 +1,27 @@
+- name: Install core
+  community.general.pacman:
+    name: "{{ packages.core }}"
+    state: present
+
+- name: Install fonts
+  community.general.pacman:
+    name: "{{ packages.fonts }}"
+    state: present
+
+- name: Install hyprland and utils
+  community.general.pacman:
+    name: "{{ item.value }}"
+    state: present
+  loop: "{{ packages.desktop | dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"
+
+- name: Install terminal emulator and cli apps
+  community.general.pacman:
+    name: "{{ packages.terminal }}"
+    state: present
+
+- name: Install apps
+  community.general.pacman:
+    name: "{{ packages.apps }}"
+    state: present

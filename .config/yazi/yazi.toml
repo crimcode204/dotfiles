@@ -1,0 +1,56 @@
+[mgr]
+show_hidden = true
+show_symlink = true
+linemode = "size"
+
+[opener]
+browser = [
+  { run = "$BROWSER --new-window %s1", desc = "Open in browser",      for = "linux", orphan = true },
+]
+edit = [
+  { run = "${EDITOR:-vi} %s",          desc = "Edit text",            for = "linux", block = true },
+]
+mount = [
+  { run = "udiskie-mount %s",          desc = "Mount",                for = "linux", orphan = true },
+]
+open = [
+  { run = "xdg-open %s1",              desc = "Open",                 for = "linux", orphan = true },
+]
+pdf_read = [
+  { run = "zathura %s",                desc = "Read PDF",             for = "linux", orphan = true },
+]
+play = [
+  { run = "vlc %s",                    desc = "Play video",           for = "linux", orphan = true },
+]
+reveal = [
+  { run = "xdg-open %d1",              desc = "Reveal",               for = "linux"},
+  { run = "clear; exiftool %s1; echo 'Press enter to exit'; read _", desc = "Show EXIF", for = "unix", block = true },
+]
+
+[open]
+rules = [
+  # Folder
+	{ url = "*/", use = [ "edit", "open", "reveal" ] },
+
+  # Text
+	{ mime = "text/*", use = [ "edit", "reveal" ] },
+  # JSON
+	{ mime = "application/{json,ndjson}", use = [ "edit", "reveal" ] },
+	{ mime = "*/javascript", use = [ "edit", "reveal" ] },
+	# Empty file
+	{ mime = "inode/empty", use = [ "edit", "reveal" ] },
+  # PDF
+  { mime = "application/pdf", use = [ "pdf_read", "reveal" ] },
+  # Image
+	{ mime = "image/*", use = [ "browser", "reveal" ] },
+  # Video
+  { mime = "video/*", use = [ "play", "reveal" ] },
+  # Archive
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
+
+  # ISO mount
+  { mime = "application/udf-image", use = [ "mount", "reveal" ] },
+
+  # Fallback
+	{ url = "*", use = [ "edit", "open", "reveal" ] },
+]

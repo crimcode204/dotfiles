@@ -1,0 +1,61 @@
+packages:
+  core:
+    - git
+    - ripgrep
+    - stow
+
+  fonts:
+    - noto-fonts
+    - noto-fonts-cjk
+    - noto-fonts-emoji
+    - ttf-jetbrains-mono-nerd
+    - ttf-noto-nerd
+
+  apps:
+    - discord
+    - keepassxc
+    - qbittorrent
+    - pavucontrol
+    - playerctl
+    - spotify-launcher
+    - steam
+    - vlc
+    - vlc-plugins-all
+    - zed
+    - zen-browser-bin
+
+  desktop:
+    theme:
+      - nwg-look
+      - qt5ct
+      - qt6ct
+    hypr:
+      - hypridle
+      - hyprland
+      - hyprlock
+      - hyprpaper
+      - hyprpolkitagent
+      - hyprshot # maybe replace this one eventually (hyprcap)
+      - xdg-desktop-portal-hyprland
+    utils:
+      - brightnessctl
+      - quickshell
+      - rofi
+      - upower
+      - uwsm
+      - wl-clipboard
+      - wlogout
+      - xdg-desktop-portal-gtk
+      - xdg-user-dirs
+
+  terminal:
+    - btop
+    - fastfetch
+    - imagemagick
+    - kitty
+    - lsd
+    - neovim
+    - starship
+    - yazi
+    - zsh
+    # add the zsh plugins here
