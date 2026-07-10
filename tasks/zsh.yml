@@ -1,0 +1,31 @@
+- name: Create plugins and history dirs
+  block:
+    - name: Plugins dir
+      ansible.builtin.file:
+        path: "{{ zsh_plugins_dir }}"
+        state: directory
+        mode: "755"
+    - name: History dir
+      ansible.builtin.file:
+        path: "{{ zsh_histfile_dir }}"
+        state: directory
+        mode: "755"
+    - name: History file
+      ansible.builtin.file:
+        path: "{{ zsh_histfile_dir }}/histfile"
+        state: touch
+        mode: "644"
+
+- name: Install and load zsh plugins
+  block:
+    - name: Install
+      ansible.builtin.git:
+        repo: "https://github.com/{{ item }}.git"
+        dest: "{{ zsh_plugins_dir }}/{{ item.split('/') | last }}"
+        depth: 1
+      loop: "{{ zsh_plugins }}"
+    - name: Load
+      ansible.builtin.template:
+        src: "templates/plugins.zsh.j2"
+        dest: "{{ zsh_plugins_dir }}.zsh"
+        mode: "644"

@@ -1,0 +1,5 @@
+{% for plugin in zsh_plugins %}
+{% set plugin_name = plugin.split('/') | last %}
+source {{ zsh_plugins_dir }}/{{ plugin_name }}/{{ plugin_name }}.plugin.zsh
+
+{% endfor %}

@@ -1,0 +1,11 @@
+# Format: user/repo
+# Sorted in order of loading
+zsh_plugins:
+  - "Aloxaf/fzf-tab"
+  - "zsh-users/zsh-autosuggestions"
+  - "zsh-users/zsh-completions"
+  - "zdharma-continuum/fast-syntax-highlighting"
+  - "zsh-users/zsh-history-substring-search"
+
+zsh_histfile_dir: "~/.local/state/zsh"
+zsh_plugins_dir: "~/.local/share/zsh/plugins"

@@ -2,7 +2,7 @@
 fastfetch --disable-linewrap
 
 # History
-HISTFILE=~/.cache/zsh/.histfile
+HISTFILE=~/.local/state/zsh/histfile
 HISTSIZE=10000
 SAVEHIST=10000
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
@@ -35,17 +35,14 @@ compinit
 _comp_options+=(globdots)
 
 # Plugins
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/ManualBuilds/fzf-tab/fzf-tab.plugin.zsh
+source ~/.local/share/zsh/plugins.zsh
 # Vulkan SDK
-source ~/vulkansdk/default/setup-env.sh
+# source ~/vulkansdk/default/setup-env.sh
 
 # Shell integrations
 eval "$(fzf --zsh)"
 
-# Autocomplete 
+# Autocomplete
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"

@@ -57,5 +57,7 @@ packages:
     - neovim
     - starship
     - yazi
+    - zathura
+    - zathura-pdf-poppler
     - zsh
     # add the zsh plugins here
