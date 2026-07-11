@@ -13,3 +13,5 @@
       when: ansible_facts["os_family"] in ["Arch Linux", "Archlinux"]
     - name: Set up zsh
       ansible.builtin.import_tasks: tasks/zsh.yml
+    - name: Install themes
+      ansible.builtin.import_tasks: tasks/themes.yml

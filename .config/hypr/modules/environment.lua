@@ -46,7 +46,7 @@ hl.env("MANPAGER", "nvim +Man!")
 hl.env("MOZ_DISABLE_RDD_SANDBOX", "1")
 
 -- Cursor theme
-hl.env("HYPRCURSOR_THEME", "theme_phinger-cursors-dark")
+hl.env("HYPRCURSOR_THEME", "rose-pine-hyprcursor")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("XCURSOR_THEME", "phinger-cursors-dark")
+hl.env("XCURSOR_THEME", "BreezeX-RoséPine")
 hl.env("XCURSOR_SIZE", "24")

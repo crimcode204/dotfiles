@@ -1,0 +1,18 @@
+- name: Create rose pine hyprcursor theme dir
+  ansible.builtin.file:
+    path: "~/.local/share/icons/rose-pine-hyprcursor"
+    state: directory
+    mode: "755"
+- name: Install rose pine hyprcursor
+  ansible.builtin.unarchive:
+    src: "https://github.com/ndom91/rose-pine-hyprcursor/releases/download/v0.3.2/rose-pine-cursor-hyprcursor_0.3.2.tar.gz"
+    dest: "~/.local/share/icons/rose-pine-hyprcursor"
+    remote_src: true
+    creates: "~/.local/share/icons/rose-pine-hyprcursor/manifest.hl"
+
+- name: Install rose pine cursor
+  ansible.builtin.unarchive:
+    src: "https://github.com/rose-pine/cursors/releases/download/v1.1.0/BreezeX-RosePine-Linux.tar.xz"
+    dest: "~/.local/share/icons"
+    remote_src: true
+    creates: "~/.local/share/icons/BreezeX-RosePine-Linux"
